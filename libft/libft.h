@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waxxy <waxxy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 16:05:08 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/10/10 14:43:54 by waxxy            ###   ########.fr       */
+/*   Updated: 2022/12/16 16:12:06 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <stdio.h>
 # include <limits.h>
 
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif 
@@ -38,6 +39,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+//Custom
+char    *ft_strndup(char *s, int len);
+void	destroy_str(char **str);
+void	ft_printab(char **str);
 /* Part 1 */
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);

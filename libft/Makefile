@@ -90,7 +90,9 @@ SRCS		=	ft_isalpha.c\
 				ft_fdi.c\
 				ft_fxupx.c\
 				ft_fprintf.c\
-
+				destroy_str.c\
+				ft_printab.c\
+				ft_strndup.c\
 
 OBJS		=	${SRCS:.c=.o}
 
