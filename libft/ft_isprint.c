@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 11:51:31 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/16 17:37:25 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/02 16:56:34 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/09 12:32:05 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 int	ft_isprint(int c)
 {
-	return (c <= 126 && c >= 32);
-}
-
-/*#include <stdio.h>
-
-int	main(void)
-{
-	printf("%d", ft_isprint(32));
+	if ((c >= 32 && c <= 126))
+	{
+		return (1);
+	}
 	return (0);
-}*/
+}	

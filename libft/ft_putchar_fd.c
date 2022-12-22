@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:18:45 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 13:35:07 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/11 10:53:59 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/13 15:45:21 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, sizeof(c));
+	write(fd, &c, 1);
 }
-
 /*
-#include <unistd.h>
-
-int	main(void)
+int main()
 {
-	char	c = ';';
-	int		fd = 1;
-
-	ft_putchar_fd(c, fd);
-	return (0);
+	ft_putchar_fd('v', 1);
 }*/

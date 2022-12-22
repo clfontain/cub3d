@@ -23,18 +23,25 @@ LIBFT		=	./libft/libft.a
 
 MAIN		=	./srcs/main.c
 
-CORE		=	
+CORE		=	./srcs/core/mlx_init.c
 
-BUILTIN		=	
+BUILTIN		=
 
-UTILITIES	= 	
-				
+UTILITIES	=
+
 PARSING		=	./srcs/parsing/parsing.c\
+				./srcs/parsing/copy_map.c\
 				./srcs/parsing/parse_elem.c\
+				./srcs/parsing/parsing_path.c\
+				./srcs/parsing/parsing_map.c\
+				./srcs/parsing/parsing_map_elem.c\
+				./srcs/parsing/check_size_map.c\
+				./srcs/parsing/check_color.c\
+				./srcs/parsing/convert_color.c
 
 SRCS		=	${MAIN} ${CORE} ${BUILTIN} ${UTILITIES} ${PARSING}
 
-OBJS		=	${SRCS:.c=.o} 
+OBJS		=	${SRCS:.c=.o}
 
 RM			=	rm -f
 

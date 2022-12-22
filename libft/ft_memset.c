@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 14:15:38 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 16:22:56 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/02 17:10:51 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/03 12:05:43 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*ptr;
+	unsigned char	*b;
+	size_t			i;
 
-	ptr = s;
-	while (n--)
-		*ptr++ = c;
+	i = 0;
+	b = s;
+	while (i < n)
+	{
+		b[i] = c;
+		i++;
+	}	
 	return (s);
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int	main(void)
-{
-    char	dest[50];
-    char	ch = 'a';
-
-    ft_memset(dest, ch, 50);
-	printf("50 0's: %s", dest);
-	return (0);
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:34:12 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/16 12:36:23 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/11 11:14:44 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/13 15:47:36 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,17 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	char	*p;
+	int		i;
 
-	p = s;
-	if (s)
+	i = 0;
+	while (s[i] != 0)
 	{
-		while (*p)
-		{
-			ft_putchar_fd(*p, fd);
-			++p;
-		}
+		write (fd, &s[i], 1);
+		i++;
 	}
 }
-
-/*#include <unistd.h>
-
-void	ft_putchar_fd(char c, int fd)
+/*
+int main()
 {
-	write(fd, &c, sizeof(c));
-}
-
-int	main(void)
-{
-	char	s[] = "Voici une chaine test \t.\n.";
-	int		fd = 1;
-
-	ft_putstr_fd(s, fd);
-	return (0);
+	ft_putstr_fd("bonjour", 1);
 }*/

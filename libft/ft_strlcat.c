@@ -3,68 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 17:59:17 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 16:39:35 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/03 14:26:24 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/11 09:47:57 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	char		*des;
-	const char	*sc;
-	size_t		n;
-	size_t		dest_len;
+	int		lendest;
+	int		lensrc;
+	size_t	i;
+	size_t	j;
 
-	des = dst;
-	sc = src;
-	n = size;
-	while (n-- != 0 && *des != '\0')
-		des++;
-	dest_len = des - dst;
-	n = size - dest_len;
-	if (n == 0)
-		return (dest_len + ft_strlen(sc));
-	while (*sc != '\0')
-	{
-		if (n != 1)
-		{
-			*des++ = *sc;
-			n--;
-		}
-		sc++;
-	}
-	*des = '\0';
-	return (dest_len + (sc - src));
-}
-
-/*#include <stdio.h>
-#include <bsd/string.h>
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
+	lendest = ft_strlen(dest);
+	lensrc = ft_strlen(src);
 	i = 0;
-	while (*(s + i))
-		++i;
-	return (i);
+	j = ft_strlen(dest);
+	if (size <= j)
+		return (size + ft_strlen(src));
+	while (src[i] != 0 && j < (size - 1))
+	{
+		dest[j] = src[i];
+		i++;
+		j++;
+	}
+	dest[j] = 0;
+	if (size < ft_strlen(dest))
+		return (lendest + size);
+	else
+		return (lendest + lensrc);
 }
-
-int	main(void)
-{
-char dest1[100] = "1234";
-char src1[100] = "ABCD";
-char dest2[100] = "1234";
-char src2[100] = "ABCD";
-
-	printf("sa fonction : %lu\n", ft_strlcat(dest1, src1, 3));
-	printf("la vrai fonction : %lu\n", strlcat(dest2, src2, 3));
-	printf("sa fonction : %s\n", dest1);
-	printf("la vrai fonction : %s\n", dest2);
-	return (0);
-}*/

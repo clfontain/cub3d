@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 23:08:42 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/06 16:11:26 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/02 16:30:26 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/09 12:31:47 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 int	ft_isascii(int c)
 {
-	return ((c & 0x7f) == c);
-}
-
-/*#include <stdio.h>
-
-int	main(void)
-{
-	printf("%d", ft_isascii(L'¶'));
+	if ((c >= 0 && c <= 127))
+	{
+		return (1);
+	}
 	return (0);
-}*/
+}	

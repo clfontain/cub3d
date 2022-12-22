@@ -3,75 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 18:41:39 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/06/13 14:07:38 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/06 10:09:59 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/12 15:23:32 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_is_sep(char c, const char *charset)
+static int	ft_checksep(char s1, char const *set)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (charset[i])
+	while (set[i] != 0)
 	{
-		if (c == charset[i])
+		if (set[i] == s1)
+		{
 			return (1);
-		++i;
+		}
+		i++;
 	}
 	return (0);
 }
 
+static char	*ft_strinit(char const *s1, int len, int i)
+{
+	char	*str;
+	int		j;
+
+	j = 0;
+	str = malloc(sizeof(char ) * (len + 1));
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	ft_memset(str, 0, len);
+	while (j < len)
+	{
+		str[j] = s1[i];
+		i++;
+		j++;
+	}
+	str[j] = 0;
+	return (str);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		lens1;
-	int		i;
-	char	*p;
-	char	*char_ptr;
-
-	lens1 = ft_strlen(s1);
-	i = 0;
-	while (ft_is_sep(*(s1 + i), set))
-		++i;
-	while (lens1 && ft_is_sep(*(s1 + lens1 - 1), set))
-		--lens1;
-	lens1 = lens1 - i;
-	if (lens1 < 0)
-		lens1 = 0;
-	p = (char *)malloc(sizeof(char) * (lens1) + 1);
-	if (!p)
-		return (NULL);
-	char_ptr = p;
-	while (lens1--)
-		*p++ = *(s1 + i++);
-	*p = 0;
-	return (char_ptr);
-}
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
+	char	*str;
+	size_t	i;
+	int		j;
 
 	i = 0;
-	while (*(s + i))
-		++i;
-	return (i);
+	j = 0;
+	if (!s1)
+		return (ft_strdup(""));
+	while (ft_checksep (s1[i], set) == 1)
+	{
+		i++;
+	}
+	j = (ft_strlen(s1) - 1);
+	if (i == ft_strlen(s1))
+		return (ft_strdup(""));
+	while (j >= 0 && ft_checksep(s1[j], set) == 1)
+	{
+		j--;
+	}
+	str = ft_strinit(s1, (j - i) + 1, i);
+	return (str);
 }
-
-int	main(void)
+/*
+int main()
 {
-	char const	sep[] = "12";
-	char const	s1[] = "12JOINF the trim121212221";
-	char *p;
+	//char * s = ft_strtrim("   xxxtripouille", " x");
+	//s = ft_strtrim("   xxxtripouille   xxx", " x");
+	//printf("%s\n", s);
+	
+	//check(!strcmp(s, "tripouille"));
+	//mcheck(s, strlen("tripouille") + 1); free(s); showLeaks();
+	
+	char * s = ft_strtrim("   xxx   xxx", " x");
+	printf("%s\n", s);
+	//check(!strcmp(s, ""));
+	//mcheck(s, 1); free(s); showLeaks();
 
-	printf("%s", p = ft_strtrim(s1, sep));
-	free(p);
-	return (0);
+
 }*/

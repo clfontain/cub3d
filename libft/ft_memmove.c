@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 15:40:56 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/16 13:07:50 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/04 11:35:57 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/11 09:54:12 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,39 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*dest_ptr;
-	const unsigned char	*src_ptr;
+	char		*dest1;
+	char		*src1;
+	size_t		i;
 
-	dest_ptr = (unsigned char *)dest;
-	src_ptr = (unsigned char *)src;
 	i = 0;
-	if (!dest_ptr && !src_ptr)
-		return (NULL);
-	if (src_ptr < dest_ptr)
-		while (++i <= n)
-			dest_ptr[n - i] = src_ptr[n - i];
-	else
+	dest1 = (char *)dest;
+	src1 = (char *)src;
+	if (dest1 > src1)
+	{
 		while (n-- > 0)
-			*(dest_ptr++) = *(src_ptr++);
-	return (dest);
+		{
+			dest1[n] = src1[n];
+		}
+	}
+	else
+	{
+		while (i < n)
+		{
+			dest1[i] = src1[i];
+			i++;
+		}
+	}
+	return (dest1);
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int	main(void)
+/*
+int main()
 {
-  	char src[] = "The boss";
-  	char dest[] = "The noob";
-    
-	ft_memmove(dest, src, 0);
-	printf("%s-> %s", src, dest);
-	return (0);
+	char sResult[] = {67, 68, 67, 68, 69, 0, 45};
+	char sResult1[] = {67, 68, 67, 68, 69, 0, 45};
+	ft_memmove(sResult + 1, sResult, 2);
+	printf("ma fonction\n%s\n", sResult);
+	memmove(sResult1 + 1, sResult1, 2);
+	printf("vrai fonction\n%s\n", sResult1);
+
+
 }*/

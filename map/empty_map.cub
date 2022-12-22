@@ -1,0 +1,9 @@
+EA ./image/collect.xpm
+NO  ./image/floor.xpm
+
+F 255,100,251
+
+
+SO./image/exit.xpm
+WE ./image/wall.xpm
+C 72,74,153

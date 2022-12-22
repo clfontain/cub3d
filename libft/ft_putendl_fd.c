@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 13:34:12 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/16 12:36:12 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/11 11:24:02 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/13 15:47:58 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,18 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	char	*p;
+	int		i;
 
-	p = s;
-	if (p)
+	i = 0;
+	while (s[i] != 0)
 	{
-		while (*p)
-		{
-			ft_putchar_fd(*p, fd);
-			++p;
-		}
-		ft_putchar_fd('\n', fd);
+		write (fd, &s[i], 1);
+		i++;
 	}
+	write(fd, "\n", 1);
 }
-
-/*#include <unistd.h>
-
-void	ft_putchar_fd(char c, int fd)
+/*
+int main()
 {
-	write(fd, &c, sizeof(c));
-}
-
-int	main(void)
-{
-	char	s[] = "Voici une chaine test \t..";
-	int		fd = 1;
-
-	ft_putendl_fd(s, fd);
-	return (0);
+	ft_putendl_fd("bonjour", 1);
 }*/

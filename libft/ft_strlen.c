@@ -3,32 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waxxy <waxxy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 12:19:28 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/07/11 20:29:10 by waxxy            ###   ########.fr       */
+/*   Created: 2022/05/02 16:58:26 by cfontain          #+#    #+#             */
+/*   Updated: 2022/07/11 11:32:51 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
-	if (s == NULL)
+	if (!str)
 		return (0);
-	while (*(s + i))
-		++i;
+	i = 0;
+	while (str[i] != '\0')
+			i++;
 	return (i);
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int main(void)
-{
-	printf("39: %zu", ft_strlen("Moments lost in time like tears in rain"));
-	return (0);
-}*/

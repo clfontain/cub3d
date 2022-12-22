@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 12:21:00 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 16:26:07 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/09 10:59:35 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/09 12:46:24 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,31 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*res;
-	int		i;
-	int		lgth;
+	char	*str;
+	size_t	i;
 
-	if (!s || !f)
-		return (NULL);
 	i = 0;
-	lgth = ft_strlen(s);
-	res = (char *)malloc(lgth * sizeof(char) + sizeof(char));
-	if (!res)
-		return (NULL);
-	while (i < lgth)
+	str = malloc(sizeof(char ) * (ft_strlen(s) + 1));
+	if (str == NULL)
 	{
-		res[i] = (*f)(i, s[i]);
-		++i;
+		return (NULL);
 	}
-	res[i] = 0;
-	return (res);
-}
-
-/*#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
+	while (i <= ft_strlen(s))
+	{
+		str[i] = 0;
+		i++;
+	}
 	i = 0;
-	while (*(s + i))
-		++i;
-	return (i);
+	while (s[i] != 0)
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}	
+	return (str);
 }
 
-char	ft_toupperi(unsigned int nb, char c)
+/*
+int	main()
 {
-	if (c >= 'a' && c <= 'z' && nb >= 1)
-		return (c & ~32);
-	else if (nb >= 1)
-		return (c);
-	else
-		return (0);
-}
-
-int	main(void)
-{
-	char const	tab[] = "aaaa aa..";
-	char		(*ptr)(unsigned int, char);
-	char		*p;
-
-	ptr = &ft_toupperi;
-	p = ft_strmapi(tab, *ptr);
-	printf("%s", p);
-	free(p);
-	return (0);
+	ft_strmapi("bonsoir", )
 }*/

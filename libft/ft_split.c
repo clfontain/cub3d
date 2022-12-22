@@ -3,123 +3,136 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 20:13:12 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/08/25 19:27:47 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/06 12:06:28 by cfontain          #+#    #+#             */
+/*   Updated: 2022/08/30 10:41:42 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_dup(char **tofree, int i)
+static int	ft_countstr(char const *s, char c)
 {
-	int	k;
+	int		i;
+	int		j;
+	int		count;
+
+	count = 0;
+	j = 0;
+	i = 0;
+	while (s[i] != 0)
+	{
+		while (s[i] != 0 && s[i] == c)
+		{
+			i++;
+		}	
+		while (s[i] != 0 && s[i] != c)
+		{	
+			i++;
+			j++;
+		}
+		if (j > 0)
+		{	
+			count++;
+			j = 0;
+		}
+	}
+	return (count);
+}
+
+static char	*ft_initstr2(char *str, int len)
+{
+	str = (char *)malloc(sizeof(char) * (len) + sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	str = ft_memset(str, 0, len + 1);
+	return (str);
+}
+
+static char	*ft_initstr(char const *s, char c, char *str, int *j)
+{
+	int		i;
+	int		k;
 
 	k = 0;
-	while (k < i)
-		free(tofree[k++]);
-	free(tofree);
+	i = *j;
+	while (s[i] != 0 && s[i] == c)
+	{
+		i++;
+	}
+	while (s[i] != 0 && s[i] != c)
+	{
+		str[k] = s[i];
+		i++;
+		k++;
+	}
+	*j = i;
+	return (str);
 }
 
-static int	ft_count_word(const char *str, char c)
+static int	ft_strlenght(char const *s, char c, int *j)
 {
-	int		word_flag;
 	int		i;
-	int		word_count;
+	int		k;
 
-	i = 0;
-	word_flag = 0;
-	word_count = 0;
-	while (str && str[i])
+	k = 0;
+	i = *j;
+	while (s[i] != 0 && s[i] == c)
 	{
-		if (str[i] == c)
-		{
-			word_flag = 0;
-			++i;
-		}
-		else if (word_flag == 1)
-			++i;
-		else
-		{
-			word_flag = 1;
-			++word_count;
-			++i;
-		}
+		i++;
 	}
-	return (word_count);
-}
-
-static char	*ft_strdupfill(const char *src, char c)
-{
-	int		lght;
-	int		i;
-	char	*p;
-
-	lght = 0;
-	while (*(src + lght) && *(src + lght) != c)
-		++lght;
-	p = (char *)malloc(lght + sizeof(char));
-	if (p == 0)
-		return (NULL);
-	i = 0;
-	while (i < lght)
+	while (s[i] != 0 && s[i] != c)
 	{
-		*(p + i) = *(src + i);
-		++i;
+		i++;
+		k++;
 	}
-	*(p + i) = '\0';
-	return (p);
+	return (k);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**spltd;
-	int		nbwords;
+	t_split	split;
 	int		i;
 	int		j;
 
-	nbwords = ft_count_word(s, c);
-	spltd = (char **)malloc(sizeof(char *) * nbwords + sizeof(char *));
-	if (spltd == NULL)
-		return (0);
+	split.str = NULL;
+	split.count = 0;
 	i = 0;
 	j = 0;
-	while (i < nbwords)
+	split.len = 0;
+	split.count = (ft_countstr(s, c));
+	split.str = (char **)malloc(sizeof(char *) * (split.count + 1));
+	if (split.str == NULL)
+		return (NULL);
+	while (i < split.count)
 	{
-		while (s[j] == c)
-			++j;
-		spltd[i] = ft_strdupfill(s + j, c);
-		if (spltd[i] == NULL)
-		{
-			free_dup(spltd, i);
-			return (NULL);
-		}
-		j = j + ft_strlen(spltd[i++]);
+		split.str[i] = 0;
+		split.len = ft_strlenght(s, c, &j);
+		split.str[i] = ft_initstr2(split.str[i], split.len);
+		if (split.str[i] == NULL)
+			return (destroy_str(split.str), NULL);
+		split.str[i] = ft_initstr(s, c, split.str[i], &j);
+		i++;
 	}
-	spltd[i] = 0;
-	return (spltd);
+	split.str[i] = 0;
+	return (split.str);
 }
 
-/*#include <stdlib.h>
-#include <stdio.h>
-
-size_t	ft_strlen(const char *s)
+/*
+void freeTab(char * * tab)
 {
-	int	i;
-
-	i = 0;
-	while (*(s + i))
-		++i;
-	return (i);
-}
-
-int	main(void)
-{
-	const char	s[] = "voici\tle\ttest\tultime\tde la mort\t!";
-	char **tab;
-	tab = ft_split(s, '\t');
-	printf("%s\n", *tab);
+	for (int i = 0; tab[i] != NULL; ++i)
+		free(tab[i]);
 	free(tab);
-	return (0);
+}
+
+int main(void)
+{
+		char * * tab = ft_split("  tripouille  42  ", ' ');
+		printf("%s\n", tab[0]);
+
+		printf("%ld\n", ft_strlen(tab[0]));
+		freeTab(tab);
+				
 }*/

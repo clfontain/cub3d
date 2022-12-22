@@ -5,27 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 16:11:55 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/16 16:24:46 by cfontain         ###   ########.fr       */
+/*   Created: 2022/12/20 10:15:03 by cfontain          #+#    #+#             */
+/*   Updated: 2022/12/20 15:33:51 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strndup(char *s, int len)
+char	*ft_strndup(const char *s, size_t len)
 {
-    int        j;
-    char    *dup;
+	char	*str;
+	size_t	i;
 
-    j = 0;
-    dup = ft_calloc(sizeof(char) , (len + 1));
-    if (dup == NULL)
-        return (0);
-    while (s[j])
-    {
-        dup[j] = s[j];
-        j++;
-    }
-
-    return (dup);
+	i = 0;
+	str = calloc(sizeof(char), len + 1);
+	if (str == NULL)
+		return (NULL);
+	while (s[i] != 0 && i < len)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	return (str);
 }

@@ -3,66 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/09 00:24:08 by waxxy             #+#    #+#             */
-/*   Updated: 2022/06/13 14:08:02 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/09 09:59:37 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/13 16:11:33 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_nblen(int len, unsigned int nb)
+static char	*ft_putstr(char *str, long int n)
 {
-	while (nb > 0)
+	int		i;
+
+	i = 0;
+	while ((str[i] >= '0' && str[i] <= '9' ) || str[i] == '-')
 	{
-		++len;
-		nb /= 10;
+		i++;
 	}
-	return (len);
+		str[i] = n + 48;
+	return (str);
 }
 
-static int	ft_itoaleninit(int nbr)
+static char	*ft_putnbr(char *str, long int n)
 {
-	if (nbr <= 0)
-		return (1);
-	else
-		return (0);
+	if (n >= 10)
+	{
+		ft_putnbr(str, (n / 10));
+		ft_putnbr(str, (n % 10));
+	}
+	if (n < 10)
+	{
+		ft_putstr(str, n);
+	}
+	return (str);
 }
 
-char	*ft_itoa(int nbr)
+static char	*ft_initstr(int len, long int n)
 {
-	char			*res;
-	int				len;
-	unsigned int	nb;
+	char	*str;
 
-	if (nbr < 0)
-		nb = -(unsigned int)nbr;
-	else
-		nb = nbr;
-	len = ft_itoaleninit(nbr);
-	len = ft_nblen(len, nb);
-	res = (char *)malloc(sizeof(char) * len + 1);
-	if (!res)
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
-	res[len] = 0;
-	if (nbr == 0)
-		res[0] = '0';
-	while (nb > 0)
+	ft_memset(str, 0, len + 1);
+	if (n < 0)
 	{
-		res[--len] = DECIMAL[nb % 10];
-		nb /= 10;
-	}
-	if (nbr < 0)
-		res[0] = '-';
-	return (res);
+		str[0] = '-';
+		n = n * (-1);
+	}	
+	ft_putnbr(str, n);
+	return (str);
 }
 
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int main ()
+char	*ft_itoa(int n)
 {
-	printf("%s", ft_itoa(4294967295));
-	return 0;
+	int				len;
+	long int		j;
+	char			*str;
+
+	j = n;
+	len = 1;
+	if (n < 0)
+		len = 2;
+	while ((j / 10) != 0)
+	{
+		len++;
+		j = (j / 10);
+	}
+	str = ft_initstr(len, n);
+	return (str);
+}
+/*
+#include <limits.h>
+
+int main()
+{
+	printf("%s\n",ft_itoa(INT_MIN));
+	printf("%s\n",ft_itoa(452));
+
+	
 }*/

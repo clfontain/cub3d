@@ -3,46 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/05 16:47:00 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 16:25:35 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/03 14:26:24 by cfontain          #+#    #+#             */
+/*   Updated: 2022/08/26 13:01:05 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
+	int		j;
 
+	j = 0;
 	i = 0;
-	if (size > 0)
+	j = ft_strlen(src);
+	if (!src || !dest)
+		return (0);
+	if (size <= 0)
 	{
-		while (i < size - 1 && *(src + i))
-		{
-			*(dst + i) = *(src + i);
-			i++;
-		}
-		*(dst + i) = '\0';
-	}
-	if (i < size || size == 0)
+		return (j);
+	}	
+	while (src[i] != 0 && i < (size - 1))
 	{
-		while (*(src + i))
-			++i;
+		dest[i] = src[i];
+		i++;
 	}
-	return (i);
-}
+	dest[i] = 0;
+	return (j);
+}	
 
-/*#include <stdio.h>
-#include <stdlib.h>
+/*
 
 int main()
 {
-int c;
-char dest[23];
-
-c = ft_strlcpy(dest, "ceci est un string0", 5);
-printf("Copied '%s' into '%s', size of src:%d", "ceci est un string0", dest, c);
-return (0);
+	char src[] = "coucou";
+	char dest[10]; memset(dest, 'A', 10);
+	//ft_strlcpy(dest, src, 2);
+	printf("%ld\n", ft_strlcpy(dest, src, 2));
+	printf("%s\n", dest);
+	printf("%c\n", dest[1]);
+	printf("%c\n", dest[2]);
+	// == strlen(src) && dest[0] == 'c' && dest[1] == 0  && dest[2] == 'A')
 }*/

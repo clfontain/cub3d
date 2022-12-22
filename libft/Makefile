@@ -1,118 +1,52 @@
-# This is a minimal set of ANSI/VT100 color codes
-_END=$'\033[0m
-_BOLD=$'\033[1m
-_UNDER=$'\033[4m
-_REV=$'\033[7m
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/11 12:36:32 by cfontain          #+#    #+#              #
+#    Updated: 2022/12/20 16:04:47 by cfontain         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-# Colors
-_GREY=$'\033[30m
-_RED=$'\033[31m
-_GREEN=$'\033[32m
-_YELLOW=$'\033[33m
-_BLUE=$'\033[34m
-_PURPLE=$'\033[35m
-_CYAN=$'\033[36m
-_WHITE=$'\033[37m
 
-# Inverted, i.e. colored backgrounds
-_IGREY=$'\033[40m
-_IRED=$'\033[41m
-_IGREEN=$'\033[42m
-_IYELLOW=$'\033[43m
-_IBLUE=$'\033[44m
-_IPURPLE=$'\033[45m
-_ICYAN=$'\033[46m
-_IWHITE=$'\033[47m
+SRCS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_split.c ft_strchr.c ft_strrchr.c ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c get_next_line.c get_next_line_utils.c ft_printf.c ft_putnbrhex.c ft_putnbrstr.c ft_printf_error.c ft_putnbrstr_error.c ft_putnbrhex_error.c destroy_str.c ft_printab.c ft_strndup.c destroy_tab_stack.c ft_is_isspace.c
 
-CC			=	gcc
+BONUSSRCS	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-CFLAGS		=	-Wall -Wextra -Werror
+NAME		= libft.a
 
-SRCS		=	ft_isalpha.c\
-				ft_isdigit.c\
-				ft_isalnum.c\
-				ft_isascii.c\
-				ft_isprint.c\
-				ft_strlen.c\
-				ft_memset.c\
-				ft_bzero.c\
-				ft_memcpy.c\
-				ft_memmove.c\
-				ft_strlcpy.c\
-				ft_strlcat.c\
-				ft_toupper.c\
-				ft_tolower.c\
-				ft_strchr.c\
-				ft_strrchr.c\
-				ft_strncmp.c\
-				ft_memchr.c\
-				ft_memcmp.c\
-				ft_strnstr.c\
-				ft_atoi.c\
-				ft_atol.c\
-				ft_calloc.c\
-				ft_strdup.c\
-				ft_substr.c\
-				ft_strjoin.c\
-				ft_strtrim.c\
-				ft_split.c\
-				ft_itoa.c\
-				ft_strmapi.c\
-				ft_striteri.c\
-				ft_putchar_fd.c\
-				ft_putstr_fd.c\
-				ft_putendl_fd.c\
-				ft_putnbr_fd.c\
-				ft_lstnew_bonus.c\
-				ft_lstadd_front_bonus.c\
-				ft_lstsize_bonus.c\
-				ft_lstlast_bonus.c\
-				ft_lstadd_back_bonus.c\
-				ft_lstdelone_bonus.c\
-				ft_lstclear_bonus.c\
-				ft_lstiter_bonus.c\
-				ft_lstmap_bonus.c\
-				ft_c.c\
-				ft_s.c\
-				ft_p.c\
-				ft_di.c\
-				ft_xupx.c\
-				ft_uitoa.c\
-				ft_printf.c\
-				get_next_line_bonus.c\
-				ft_free_split.c\
-				ft_atoi_base.c\
-				get_next_line_utils_bonus.c\
-				ft_isspace.c\
-				ft_fc.c\
-				ft_fs.c\
-				ft_fp.c\
-				ft_fdi.c\
-				ft_fxupx.c\
-				ft_fprintf.c\
-				destroy_str.c\
-				ft_printab.c\
-				ft_strndup.c\
+BONUSOBJS	= ${BONUSSRCS:.c=.o}
 
-OBJS		=	${SRCS:.c=.o}
+HEADER		= libft.h
 
-NAME		=	libft.a
+OBJS		= ${SRCS:.c=.o}
 
-HEADERS		=	libft.h
+CC		= gcc
 
-${NAME}	:	${HEADERS} ${OBJS}
-	@echo "${_BOLD}${_PURPLE}Compiling library...${_END}"
-	ar rc ${NAME} ${OBJS}
-	ranlib ${NAME}
+CFLAGS		= -Wall -Wextra -Werror
 
-all 	: ${NAME}
+RM		= rm -f
 
-clean	:
-	rm -f ${OBJS}
+all:		${NAME}
 
-fclean	:	clean
-	rm -f ${NAME}
+bonus		: ${HEADER}  ${OBJS} ${BONUSOBJS}
+				ar rc ${NAME}  ${OBJS} ${BONUSOBJS}
+				ranlib ${NAME}
 
-re		:	fclean all
 
-.PHONY	:	re fclean all clean
+${NAME}:	${HEADER} ${OBJS}
+
+			ar rc ${NAME} ${OBJS}
+
+			ranlib ${NAME}
+clean:
+	${RM} ${OBJS} ${BONUSOBJS}
+
+fclean:		clean
+			${RM} ${NAME}
+
+re:		fclean all
+
+.PHONY:		all clean fclean re

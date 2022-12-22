@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tnoulens <tnoulens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 15:13:47 by tnoulens          #+#    #+#             */
-/*   Updated: 2022/05/10 18:24:03 by tnoulens         ###   ########.fr       */
+/*   Created: 2022/05/05 10:04:50 by cfontain          #+#    #+#             */
+/*   Updated: 2022/05/11 09:53:38 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,20 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	const unsigned char	*p;
-	unsigned char		c_to_find;
+	unsigned const char	*p;
+	unsigned char		d;
+	size_t				i;
 
-	c_to_find = (unsigned char)c;
-	p = (const unsigned char *)s;
-	while (n--)
+	d = c;
+	p = s;
+	i = 0;
+	while (i < n)
 	{
-		if (*p == c_to_find)
-			return ((void *)p);
-		else
-			++p;
+		if (p[i] == d)
+		{
+			return ((unsigned char *)s + i);
+		}
+		i++;
 	}
 	return (NULL);
 }
-
-/*#include <stdio.h>
-#include <stdlib.h>
-
-int main()
-{
-	int c = 258;
-	int *p;
-	int	str[] = {1, 2 , 258, 4, 5};
-	p = ft_memchr(str, c, 3);
-    return p[0];
-}*/

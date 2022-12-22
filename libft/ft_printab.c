@@ -6,7 +6,7 @@
 /*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 10:30:03 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/16 16:07:33 by cfontain         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:27:15 by cfontain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	ft_printab(char **str)
 			ft_printf("%s", str[i]);
 			i++;
 		}
-		ft_printf("\n");
 	}
 }
