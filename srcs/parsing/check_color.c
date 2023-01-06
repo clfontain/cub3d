@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccravero <ccravero@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:15:03 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/22 14:36:09 by cfontain         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:03:50 by ccravero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 bool	check_color_range(char *str, t_color *color)
 {
-	bool res;
+	bool	res;
+	char	**tmp;
 
 	res = true;
-	char **tmp;
 	tmp = ft_split(str, ',');
 	if (tmp == NULL)
 		return (false);
@@ -49,6 +49,19 @@ bool	check_color_format(char *str, t_color *color)
 			return (ft_printf_error("Error\nFormat color\n"), false);
 		j++;
 	}
+	if (check_color_format2(str, &i) == false)
+		return (false);
+	if (i != 2)
+		return (ft_printf_error("Error\nfFormat color\n"), false);
+	if (check_color_range(str, color) == false)
+		return (ft_printf_error("Error\nRange color\n"), false);
+	return (true);
+}
+
+bool	check_color_format2(char *str, int *i)
+{
+	int	j;
+
 	j = 0;
 	while (str[j] != 0)
 	{
@@ -63,17 +76,13 @@ bool	check_color_format(char *str, t_color *color)
 			return (ft_printf_error("%dError\nFormat color\n", j), false);
 		while (char_is_isspace(str[j]) == 1)
 			j++;
-		if (str[j] == ',' && i != 2)
-			i++;
+		if (str[j] == ',' && *i != 2)
+			(*i)++;
 		else if (str[j] != 0)
 			return (ft_printf_error("%dError\nFormat color\n", j), false);
 		if (str[j] != 0)
 			j++;
 	}
-	if (i != 2 )
-		return (ft_printf_error("Error\nfFormat color\n"), false);
-	if (check_color_range(str, color) == false)
-		return (ft_printf_error("Error\nRange color\n"), false);
 	return (true);
 }
 

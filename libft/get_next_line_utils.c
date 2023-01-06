@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccravero <ccravero@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 17:21:03 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/20 15:34:22 by cfontain         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:56:30 by ccravero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_callocbzerognl(size_t nmemb, size_t size)
 	i = 0;
 	if (nmemb != 0 && size > (size_t) -1 / size)
 		return (NULL);
-	p = calloc(sizeof(nmemb), size);
+	p = ft_calloc(sizeof(nmemb), size);
 	if (p == NULL)
 		return (NULL);
 	while (i < size)

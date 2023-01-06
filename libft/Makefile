@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+         #
+#    By: ccravero <ccravero@students.42.fr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/11 12:36:32 by cfontain          #+#    #+#              #
-#    Updated: 2022/12/20 16:04:47 by cfontain         ###   ########.fr        #
+#    Updated: 2022/12/28 16:55:33 by ccravero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS		= ${SRCS:.c=.o}
 
 CC		= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 RM		= rm -f
 

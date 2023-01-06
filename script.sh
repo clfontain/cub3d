@@ -6,8 +6,8 @@ printf "***************************************\n"
 valgrind ./cub3d  &> VALGRIND_LOG
 ./cub3d  &> LOG
 ./a.out
-valgrind ./cub3d ./map/2elemets.cub  &> VALGRIND_LOG
-./cub3d ./map/2elemets.cub  &> LOG
+valgrind ./cub3d ./map/2_elements.cub  &> VALGRIND_LOG
+./cub3d ./map/2_elements.cub  &> LOG
 ./a.out
 valgrind ./cub3d ./map/EA_miss.cub  &> VALGRIND_LOG
 ./cub3d ./map/EA_miss.cub  &> LOG
@@ -42,7 +42,5 @@ valgrind ./cub3d ./map/str_map_no_empty.cub  &> VALGRIND_LOG
 valgrind ./cub3d ./map/str_no_empty.cub  &> VALGRIND_LOG
 ./cub3d ./map/str_no_empty.cub  &> LOG
 ./a.out
-valgrind ./cub3d ./map/map.cub  &> VALGRIND_LOG
-./cub3d ./map/map.cub  &> LOG
-./a.out
+
 

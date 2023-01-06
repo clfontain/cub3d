@@ -18,16 +18,14 @@ MLX_DIR		=	./minilibx-linux
 
 MLX 		= ./minilibx-linux/libmlx.a
 
+DEPS		=	${OBJS:.o=.d}
 
 LIBFT		=	./libft/libft.a
 
 MAIN		=	./srcs/main.c
 
-CORE		=	./srcs/core/mlx_init.c
+CORE		=	./srcs/core/mlx_init.c ./srcs/core/raycast.c ./srcs/core/linecrossed.c ./srcs/core/texture.c ./srcs/core/hooks.c ./srcs/core/tools.c
 
-BUILTIN		=
-
-UTILITIES	=
 
 PARSING		=	./srcs/parsing/parsing.c\
 				./srcs/parsing/copy_map.c\
@@ -37,9 +35,10 @@ PARSING		=	./srcs/parsing/parsing.c\
 				./srcs/parsing/parsing_map_elem.c\
 				./srcs/parsing/check_size_map.c\
 				./srcs/parsing/check_color.c\
-				./srcs/parsing/convert_color.c
+				./srcs/parsing/convert_color.c\
+				./srcs/parsing/parse_elem2.c\
 
-SRCS		=	${MAIN} ${CORE} ${BUILTIN} ${UTILITIES} ${PARSING}
+SRCS		=	${MAIN} ${CORE} ${PARSING}
 
 OBJS		=	${SRCS:.c=.o}
 
@@ -47,7 +46,7 @@ RM			=	rm -f
 
 CC			=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror -g3 -I includes/
+FLAGS		=	-MMD -Wall -Wextra -Werror -I includes/
 
 FLAGS_LIB	= -lXext -lX11
 
@@ -79,7 +78,7 @@ clean		:
 		@make clean -sC ${MLX_DIR}
 		@echo "OK"
 		@echo "\033[31m----Cleaning objects----"
-		@${RM} ${OBJS}
+		@${RM} ${OBJS} ${DEPS}
 		@echo "OK\033[0m"
 
 fclean		: clean
@@ -92,3 +91,5 @@ fclean		: clean
 re			: fclean all
 
 .PHONY		: all clean fclean re
+
+-include $(DEPS)

@@ -1,11 +1,11 @@
-EA ./image/collect.xpm
-NO  ./image/floor.xpm
 
 F 255,100,251
 
 
-SO./image/exit.xpm
-WE ./image/wall.xpm
+NO ./image/textureN.xpm
+EA ./image/textureE.xpm
+SO ./image/textureS.xpm
+WE ./image/textureW.xpm
 
 C 72,74,153
        11111111111111111111111111111  111111111111

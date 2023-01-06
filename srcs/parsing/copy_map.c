@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccravero <ccravero@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:56:45 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/21 15:13:06 by cfontain         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:17:06 by ccravero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**copy_map(t_cub3d *data)
 		return (ft_printf_error("Error\nInvalid map name\n"), NULL);
 	if (count_line(data) == 1)
 		return (NULL);
-	data->map = calloc(sizeof(char *), (data->size_line + 1));
+	data->map = ft_calloc(sizeof(char *), (data->size_line + 1));
 	if (data->map == NULL)
 		return (NULL);
 	if (init_str_map(data, data->size_line) == NULL)

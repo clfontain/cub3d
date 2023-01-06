@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfontain <cfontain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ccravero <ccravero@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:20:43 by cfontain          #+#    #+#             */
-/*   Updated: 2022/12/20 15:51:18 by cfontain         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:03:15 by ccravero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ bool	check_char(t_cub3d *data)
 
 bool	parsing_map(t_cub3d *data)
 {
+	(void)data;
 	if (check_size_map(data) == false)
 		return (ft_printf_error("Error\nEmpty line in map\n"), false);
 	if (check_char(data) == false)
